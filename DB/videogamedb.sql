@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `videogame` (
   `features` VARCHAR(500) NULL,
   `release_date` DATE NULL,
   `category_id` INT NOT NULL,
+  `own` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_videogame_category1`
     FOREIGN KEY (`category_id`)
@@ -115,7 +116,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `VideoGameDB`;
-INSERT INTO `videogame` (`id`, `title`, `rating`, `description`, `price`, `features`, `release_date`, `category_id`) VALUES (1, 'Outerspace', 'M', 'Partake in space battles in space', 60.00, 'Online multiplayer, single player campaign, up to 4 players on one screen', '2018-11-11', 1);
+INSERT INTO `videogame` (`id`, `title`, `rating`, `description`, `price`, `features`, `release_date`, `category_id`, `own`) VALUES (1, 'Red Dead Redemption 2', 'M', 'gang of outlaws looking to score in one final heist', 60.00, 'open world, single player, multiplayer coming soon', '2018-10-26', 1, 0);
 
 COMMIT;
 

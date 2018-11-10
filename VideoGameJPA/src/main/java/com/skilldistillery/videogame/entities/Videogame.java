@@ -28,6 +28,7 @@ public class Videogame {
 	private String description;
 	private String features;
 	private double price;
+	private boolean own;
 	
 	@Column(name = "release_date")
 	private Date releaseDate;
@@ -109,6 +110,12 @@ public class Videogame {
 	
 	
 	
+	public boolean getOwn() {
+		return own;
+	}
+	public void setOwn(boolean own) {
+		this.own = own;
+	}
 	//-----------------------
 	// hashcode and equals
 	//-----------------------
@@ -141,9 +148,10 @@ public class Videogame {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Videogame [id=").append(id).append(", title=").append(title).append(", description=")
-				.append(description).append(", features=").append(features).append(", releaseDate=").append(releaseDate)
-				.append(", rating=").append(rating).append(", category=").append(category).append(", price=")
-				.append(price).append("]");
+				.append(description).append(", features=").append(features).append(", price=").append(price)
+				.append(", own=").append(own).append(", releaseDate=").append(releaseDate).append(", rating=")
+				.append(rating).append(", category=").append(category).append(", platforms=").append(platforms)
+				.append("]");
 		return builder.toString();
 	}
 	
@@ -155,7 +163,7 @@ public class Videogame {
 		super();
 	}
 	public Videogame(String title, String description, String features, Date releaseDate, Rating rating,
-			Category category, double price, List<Platform> platforms) {
+			Category category, double price, boolean own, List<Platform> platforms) {
 		super();
 		this.title = title;
 		this.description = description;
@@ -165,6 +173,7 @@ public class Videogame {
 		this.category = category;
 		this.price = price;
 		this.platforms = platforms;
+		this.own = own;
 	}
 	
 	

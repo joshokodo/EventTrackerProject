@@ -42,15 +42,16 @@ class VideogameTest {
 	
 	@Test
 	void test_basic_mappings() {
-		assertEquals("Outerspace", game.getTitle());
-		assertEquals("Partake in space battles in space", game.getDescription());
-		assertEquals("Online multiplayer, single player campaign, up to 4 players on one screen", game.getFeatures());
+		assertEquals("Red Dead Redemption 2", game.getTitle());
+		assertEquals("gang of outlaws looking to score in one final heist", game.getDescription());
+		assertEquals("open world, single player, multiplayer coming soon", game.getFeatures());
 		assertEquals(60.00, game.getPrice());
+		assertEquals(false, game.getOwn());
 	}
 	
 	@Test
 	void test_releaseDate_mappings(){
-		assertEquals("2018-11-11 00:00:00.0", game.getReleaseDate().toString());
+		assertEquals("2018-10-26 00:00:00.0", game.getReleaseDate().toString());
 	}
 	
 	@Test
