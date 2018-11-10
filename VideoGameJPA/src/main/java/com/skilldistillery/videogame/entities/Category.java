@@ -1,5 +1,7 @@
 package com.skilldistillery.videogame.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -18,6 +21,9 @@ public class Category {
 	@Enumerated(EnumType.STRING)
 	@Column(name="name")
 	private GameType gameType;
+	
+	@OneToMany(mappedBy="category")
+	List<Videogame> games;
 
 	//---------------------
 	// setters and getters
@@ -39,9 +45,18 @@ public class Category {
 		this.gameType = gameType;
 	}
 	
+	public List<Videogame> getGames() {
+		return games;
+	}
+	
+	public void setGames(List<Videogame> games) {
+		this.games = games;
+	}
+	
 	//---------------------
 	// hashcode and equals
 	//---------------------
+
 
 	@Override
 	public int hashCode() {
@@ -72,7 +87,8 @@ public class Category {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Category [id=").append(id).append(", gameType=").append(gameType).append("]");
+		builder.append("Category [id=").append(id).append(", gameType=").append(gameType).append(", games=")
+				.append(games).append("]");
 		return builder.toString();
 	}
 	
@@ -84,9 +100,10 @@ public class Category {
 		super();
 	}
 
-	public Category(GameType gameType) {
+	public Category(GameType gameType, List<Videogame> games) {
 		super();
 		this.gameType = gameType;
+		this.games = games;
 	}
 	
 	

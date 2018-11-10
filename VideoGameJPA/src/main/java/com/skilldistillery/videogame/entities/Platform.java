@@ -1,5 +1,7 @@
 package com.skilldistillery.videogame.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Platform {
@@ -19,6 +22,10 @@ public class Platform {
 	@Enumerated(EnumType.STRING)
 	@Column(name="system")
 	private GameSystem gameSystem;
+	
+	
+	@ManyToMany(mappedBy = "platforms")
+	List<Videogame> games;
 
 	
 	//--------------------
@@ -39,11 +46,21 @@ public class Platform {
 	public void setGameSystem(GameSystem gameSystem) {
 		this.gameSystem = gameSystem;
 	}
+	
+	
 
 	//------------------------
 	// hashcode and equals
 	//------------------------
 	
+	public List<Videogame> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Videogame> games) {
+		this.games = games;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,7 +90,8 @@ public class Platform {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Platform [id=").append(id).append(", gameSystem=").append(gameSystem).append("]");
+		builder.append("Platform [id=").append(id).append(", gameSystem=").append(gameSystem).append(", games=")
+				.append(games).append("]");
 		return builder.toString();
 	}
 
@@ -85,9 +103,10 @@ public class Platform {
 		super();
 	}
 
-	public Platform(GameSystem gameSystem) {
+	public Platform(GameSystem gameSystem, List<Videogame> games) {
 		super();
 		this.gameSystem = gameSystem;
+		this.games = games;
 	}
 	
 	

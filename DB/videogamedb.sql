@@ -57,17 +57,17 @@ DROP TABLE IF EXISTS `platform` ;
 
 CREATE TABLE IF NOT EXISTS `platform` (
   `id` INT NOT NULL,
-  `system` ENUM('PS4', 'XBOX1', 'PC', 'SWITCH', '3DS') NOT NULL,
+  `system` ENUM('PS4', 'XBOX1', 'PC', 'SWITCH', 'THREE_DS') NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `platform_has_videogame`
+-- Table `platform_videogame`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `platform_has_videogame` ;
+DROP TABLE IF EXISTS `platform_videogame` ;
 
-CREATE TABLE IF NOT EXISTS `platform_has_videogame` (
+CREATE TABLE IF NOT EXISTS `platform_videogame` (
   `platform_id` INT NOT NULL,
   `videogame_id` INT NOT NULL,
   PRIMARY KEY (`platform_id`, `videogame_id`),
@@ -88,6 +88,7 @@ DROP USER IF EXISTS gamer;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 CREATE USER 'gamer' IDENTIFIED BY 'gamer';
 
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'gamer';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -114,7 +115,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `VideoGameDB`;
-INSERT INTO `videogame` (`id`, `title`, `rating`, `description`, `price`, `features`, `release_date`, `category_id`) VALUES (1, 'Outerspace', 'M', 'Partake in space battles in space', 60.00, 'Online multiplayer, single player campaign, up to 4 players on one screen', NULL, 1);
+INSERT INTO `videogame` (`id`, `title`, `rating`, `description`, `price`, `features`, `release_date`, `category_id`) VALUES (1, 'Outerspace', 'M', 'Partake in space battles in space', 60.00, 'Online multiplayer, single player campaign, up to 4 players on one screen', '2018-11-11', 1);
 
 COMMIT;
 
@@ -128,19 +129,19 @@ INSERT INTO `platform` (`id`, `system`) VALUES (1, 'PS4');
 INSERT INTO `platform` (`id`, `system`) VALUES (2, 'XBOX1');
 INSERT INTO `platform` (`id`, `system`) VALUES (3, 'PC');
 INSERT INTO `platform` (`id`, `system`) VALUES (4, 'SWITCH');
-INSERT INTO `platform` (`id`, `system`) VALUES (5, '3DS');
+INSERT INTO `platform` (`id`, `system`) VALUES (5, 'THREE_DS');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `platform_has_videogame`
+-- Data for table `platform_videogame`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `VideoGameDB`;
-INSERT INTO `platform_has_videogame` (`platform_id`, `videogame_id`) VALUES (1, 1);
-INSERT INTO `platform_has_videogame` (`platform_id`, `videogame_id`) VALUES (2, 1);
-INSERT INTO `platform_has_videogame` (`platform_id`, `videogame_id`) VALUES (3, 1);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (1, 1);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (2, 1);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 1);
 
 COMMIT;
 

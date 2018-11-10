@@ -4,14 +4,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="Xtreme">
+	<persistence-unit name="Videogame">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
 		</provider>
 		
 		<!-- Entities -->
-<!-- 	<class>com.skilldistillery.xtreme.entities.Post</class>
-		<class>com.skilldistillery.xtreme.entities.Comment</class>
-		<class>com.skilldistillery.xtreme.entities.Category</class> -->
+ 		<class>com.skilldistillery.videogame.entities.Videogame</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

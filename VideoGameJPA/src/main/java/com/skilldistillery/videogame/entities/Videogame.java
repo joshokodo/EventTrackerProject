@@ -40,7 +40,7 @@ public class Videogame {
 	private Category category;
 	
 	@ManyToMany(cascade= {CascadeType.REMOVE, CascadeType.PERSIST})
-	@JoinTable(name="platform_has_videogame",
+	@JoinTable(name="platform_videogame",
 		joinColumns=@JoinColumn(name="videogame_id"),
 		inverseJoinColumns=@JoinColumn(name="platform_id")
 	)
