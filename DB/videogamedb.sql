@@ -28,6 +28,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `Rating`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Rating` ;
+
+CREATE TABLE IF NOT EXISTS `Rating` (
+  `id` INT NOT NULL,
+  `rated` ENUM('E', 'E10UP', 'T', 'M', 'A', 'TBD') NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `videogame`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `videogame` ;
@@ -35,17 +47,22 @@ DROP TABLE IF EXISTS `videogame` ;
 CREATE TABLE IF NOT EXISTS `videogame` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
-  `rating` ENUM('E', 'T', 'M', 'A') NOT NULL,
   `description` VARCHAR(500) NULL,
   `price` DECIMAL(5,2) NOT NULL,
   `features` VARCHAR(500) NULL,
   `release_date` DATE NULL,
   `category_id` INT NOT NULL,
   `own` TINYINT NOT NULL,
+  `Rating_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_videogame_category1`
     FOREIGN KEY (`category_id`)
     REFERENCES `category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_videogame_Rating1`
+    FOREIGN KEY (`Rating_id`)
+    REFERENCES `Rating` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -112,11 +129,34 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `Rating`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `VideoGameDB`;
+INSERT INTO `Rating` (`id`, `rated`) VALUES (1, 'E');
+INSERT INTO `Rating` (`id`, `rated`) VALUES (2, 'E10UP');
+INSERT INTO `Rating` (`id`, `rated`) VALUES (3, 'T');
+INSERT INTO `Rating` (`id`, `rated`) VALUES (4, 'M');
+INSERT INTO `Rating` (`id`, `rated`) VALUES (5, 'A');
+INSERT INTO `Rating` (`id`, `rated`) VALUES (6, 'TBD');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `videogame`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `VideoGameDB`;
-INSERT INTO `videogame` (`id`, `title`, `rating`, `description`, `price`, `features`, `release_date`, `category_id`, `own`) VALUES (1, 'Red Dead Redemption 2', 'M', 'gang of outlaws looking to score in one final heist', 60.00, 'open world, single player, multiplayer coming soon', '2018-10-26', 1, 0);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (1, 'Red Dead Redemption 2', 'gang of outlaws looking to score in one final heist', 60.00, 'open world, single player, multiplayer coming soon', '2018-10-26', 1, 0, 4);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (2, 'Hollow Knight', 'metroidvania with atmosphere', 15.00, 'single player, free DLC', '2018-02-24', 2, 1, 3);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (3, 'Overwatch', 'hero shooter moba style', 60.00, 'multiplayer, free DLC', '2016-05-24', 4, 1, 3);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (4, 'Brawlhalla', 'ssb style fighting game', 0.00, 'multiplayer free to play', '2015-11-30', 7, 1, 3);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (5, 'Skyrim', 'open world rpg', 60.00, 'paid dlc, lots of versions', '2011-11-11', 5, 1, 4);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (6, 'Bioshock', 'a mystery under the sea', 60.00, 'paid DLC', '2007-08-21', 4, 1, 4);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (7, 'Fallout 76', 'post apocalyptic rpg shooter', 60.00, 'First time Multiplayer', '2018-11-14', 4, 0, 4);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (8, 'Super Smash Bros. Ultimate', 'fighting game with characters from across nintendo', 60.00, 'multiplayer', '2018-12-6', 7, 0, 2);
+INSERT INTO `videogame` (`id`, `title`, `description`, `price`, `features`, `release_date`, `category_id`, `own`, `Rating_id`) VALUES (9, 'Kingdom Hearts 3', 'disney characters meets FF rpg', 60.00, 'N/A', '2019-12-30', 5, 0, 3);
 
 COMMIT;
 
@@ -143,6 +183,24 @@ USE `VideoGameDB`;
 INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (1, 1);
 INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (2, 1);
 INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 1);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 2);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (1, 3);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (2, 3);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 3);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 4);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (1, 5);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (2, 5);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 5);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (4, 5);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (1, 6);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (2, 6);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 6);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (1, 7);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (2, 7);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (3, 7);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (4, 8);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (1, 9);
+INSERT INTO `platform_videogame` (`platform_id`, `videogame_id`) VALUES (4, 9);
 
 COMMIT;
 

@@ -1,7 +1,9 @@
 package com.skilldistillery.videogame.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Platform {
@@ -23,8 +27,8 @@ public class Platform {
 	@Column(name="system")
 	private GameSystem gameSystem;
 	
-	
-	@ManyToMany(mappedBy = "platforms")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "platforms", cascade= {CascadeType.REMOVE, CascadeType.MERGE})
 	List<Videogame> games;
 
 	
@@ -47,19 +51,39 @@ public class Platform {
 		this.gameSystem = gameSystem;
 	}
 	
+	public List<Videogame> getGames() {
+		return games;
+	}
+	
+	public void setGames(List<Videogame> games) {
+		this.games = games;
+	}
+	
+	//----------------
+	// add and remove
+	//----------------
+		
+	public void addGame(Videogame game) {
+		if (games == null)
+			games = new ArrayList<>();
+		if (!games.contains(game)) {
+			games.add(game);
+			game.addPlatform(this);
+		}
+	}
+
+	public void removeGame(Videogame game) {
+		if (games != null && games.contains(game)) {
+			games.remove(game);
+			game.removePlatform(this);
+		}
+	}
 	
 
 	//------------------------
 	// hashcode and equals
 	//------------------------
 	
-	public List<Videogame> getGames() {
-		return games;
-	}
-
-	public void setGames(List<Videogame> games) {
-		this.games = games;
-	}
 
 	@Override
 	public int hashCode() {

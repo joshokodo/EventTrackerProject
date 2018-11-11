@@ -10,6 +10,9 @@
 		
 		<!-- Entities -->
  		<class>com.skilldistillery.videogame.entities.Videogame</class>
+ 		<class>com.skilldistillery.videogame.entities.Rating</class>
+ 		<class>com.skilldistillery.videogame.entities.Category</class>
+ 		<class>com.skilldistillery.videogame.entities.Platform</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

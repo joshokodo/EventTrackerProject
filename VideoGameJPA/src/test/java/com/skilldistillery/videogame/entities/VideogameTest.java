@@ -56,7 +56,9 @@ class VideogameTest {
 	
 	@Test
 	void test_rating_mappings(){
-		assertEquals(Rating.M, game.getRating());
+		Rating r = new Rating(Rated.M, null);
+		r.setId(4);
+		assertEquals(r, game.getRating());
 	}
 	@Test
 	void test_category_mappings(){

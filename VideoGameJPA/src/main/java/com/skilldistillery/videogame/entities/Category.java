@@ -1,7 +1,9 @@
 package com.skilldistillery.videogame.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Category {
@@ -22,7 +26,8 @@ public class Category {
 	@Column(name="name")
 	private GameType gameType;
 	
-	@OneToMany(mappedBy="category")
+	@JsonIgnore
+	@OneToMany(mappedBy="category", cascade= {CascadeType.REMOVE, CascadeType.MERGE})
 	List<Videogame> games;
 
 	//---------------------
@@ -53,6 +58,25 @@ public class Category {
 		this.games = games;
 	}
 	
+	//----------------
+		// add and remove
+		//----------------
+		
+		public void addGame(Videogame game) {
+			if (games == null)
+				games = new ArrayList<>();
+			if (!games.contains(game)) {
+				games.add(game);
+				game.setCategory(this);
+			}
+		}
+
+		public void removeGame(Videogame game) {
+			if (games != null && games.contains(game)) {
+				games.remove(game);
+				game.setCategory(null);;
+			}
+		}
 	//---------------------
 	// hashcode and equals
 	//---------------------
@@ -87,8 +111,13 @@ public class Category {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Category [id=").append(id).append(", gameType=").append(gameType).append(", games=")
-				.append(games).append("]");
+		builder
+		.append("Category [id=")
+		.append(id)
+		.append(", gameType=")
+		.append(gameType)
+		.append(", games=")
+		.append(games).append("]");
 		return builder.toString();
 	}
 	
