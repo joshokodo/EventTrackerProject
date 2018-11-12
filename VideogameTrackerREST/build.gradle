@@ -14,6 +14,12 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+war {
+  enabled = true
+  archiveName = "${baseName}.war"     // Our app name, as defined in settings.gradle
+  destinationDir = file("./WAR")      // WAR/ folder under project root directory
+}
 
 group = 'com.skilldistillery'
 version = '0.0.1-SNAPSHOT'
@@ -30,6 +36,7 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	runtimeOnly('mysql:mysql-connector-java')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	providedRuntime ('org.springframework.boot:spring-boot-starter-tomcat')
 	
 	compile 'org.junit.jupiter:junit-jupiter-api:5.0.1'
 	testCompile('org.apiguardian:apiguardian-api:1.0.0')
