@@ -1,5 +1,5 @@
 ## Event Tracker Project
- The purpose of this project was to practice using a RESTful api along with spring boot and JPA repositories connecting to a database. There is no front-end at this time but all controller methods where verified and tested using "postman" route tester. A Json file titled "Videogame Tracker collection" in the root directory can simply be imported into the postman program to allow for testing of all the routes. The project is running off of a localhost server with port 8084 and will soon be pushed to an EC2 instance server. A proper front-end will be implemented in the next weekend project.
+ The purpose of this project was to practice using a RESTful api along with spring boot and JPA repositories connecting to a database. There is no front-end at this time but all controller methods where verified and tested using "postman" route tester. A Json file titled "Videogame Tracker collection" in the root directory can simply be imported into the postman program to allow for testing of all the routes. The project is running off of a localhost server with port 8084. To test on your browser go to http://18.223.244.221:8080/VideogameTrackerREST. A proper front-end will be implemented in the next weekend project.
 
 ## Routes To test
 * GET http://18.223.244.221:8080/VideogameTrackerREST/api/games
