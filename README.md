@@ -29,6 +29,9 @@ This project is for tracking video games. It keeps track of both owned games and
 * JPA repositories
 * Postman route tester
 * MySql
+* Gradle
+* ec2 Amazon web server
+
 
 
 ## Lessons Learned
