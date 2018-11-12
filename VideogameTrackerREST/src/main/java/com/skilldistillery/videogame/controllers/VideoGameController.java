@@ -65,7 +65,7 @@ public class VideoGameController {
 			resp.setStatus(404);
 			newUrl = req.getRequestURL().toString();
 		} else {
-			resp.setStatus(201);
+			resp.setStatus(200);
 			newUrl = req.getRequestURL().toString() + "/" + (game.getId());
 		}
 		resp.setHeader("Location", newUrl);

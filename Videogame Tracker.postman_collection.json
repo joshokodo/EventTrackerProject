@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "0d4466d5-212d-48e6-a28f-c7b0676ed495",
+		"name": "Videogame Tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "all games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "game by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create game",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"title\": \"TEST GAME\",\n        \"description\": \"TEST\",\n        \"features\": \"TEST\",\n        \"price\": 60,\n        \"own\": false,\n        \"releaseDate\": \"2018-10-26\",\n       \n        \"rating\": {\n        \t\"id\": 4,\n        \t\"rated\":\"M\"\n        },\n        \n        \"category\": {\n        \t\"id\": 1,\n        \t\"gameType\": \"ACTION\"\n    \t},\n    \t\n\t\t\"platforms\": [\n            {\n                \"id\": 1,\n                \"gameSystem\": \"PS4\"\n            },\n            {\n                \"id\": 2,\n                \"gameSystem\": \"XBOX1\"\n            },\n            {\n                \"id\": 3,\n                \"gameSystem\": \"PC\"\n            }\n        ]\n    \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update game",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"title\": \"TEST Update GAME\",\n        \"description\": \"TEST\",\n        \"features\": \"TEST\",\n        \"price\": 60,\n        \"own\": false,\n        \"releaseDate\": \"2018-10-26\",\n       \n        \"rating\": {\n        \t\"id\": 4,\n        \t\"rated\":\"M\"\n        },\n        \n        \"category\": {\n        \t\"id\": 1,\n        \t\"gameType\": \"ACTION\"\n    \t},\n    \t\n\t\t\"platforms\": [\n            {\n                \"id\": 1,\n                \"gameSystem\": \"PS4\"\n            },\n            {\n                \"id\": 2,\n                \"gameSystem\": \"XBOX1\"\n            },\n            {\n                \"id\": 3,\n                \"gameSystem\": \"PC\"\n            }\n        ]\n    \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete game",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all owned games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/own",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"own"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all wishlist games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/wishlist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"wishlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all own games by release date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/own/sort/date",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"own",
+						"sort",
+						"date"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all wishlist games by release date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/wishlist/sort/date",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"wishlist",
+						"sort",
+						"date"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all own games by rating",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/own/sort/rating",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"own",
+						"sort",
+						"rating"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all wishlist games by rating",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/wishlist/sort/rating",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"wishlist",
+						"sort",
+						"rating"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all own games by title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/own/sort/title",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"own",
+						"sort",
+						"title"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all wishlist games by title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/wishlist/sort/title",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"wishlist",
+						"sort",
+						"title"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all own games by price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/own/sort/price",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"own",
+						"sort",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all wishlist games by price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/wishlist/sort/title",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"wishlist",
+						"sort",
+						"title"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all own games by category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/own/sort/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"own",
+						"sort",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all wishlist games by category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/games/wishlist/sort/title",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"games",
+						"wishlist",
+						"sort",
+						"title"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
