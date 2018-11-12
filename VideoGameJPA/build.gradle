@@ -42,12 +42,13 @@ buildscript {
 */
 ext {
   hibernateVersion = "5.2.17.Final"
-  springVersion = "4.3.14.RELEASE" /*added*/
+
 }
 
 // define project specific dependencies
 dependencies {
- compile group: 'org.springframework', name: 'spring-context', version:"$springVersion"
+
+  //compile group: 'org.springframework', name: 'spring-context', version:"$springVersion"
   compile "mysql:mysql-connector-java:5.1.47"
   compile "log4j:log4j:1.2.17"
   compile "org.hibernate:hibernate-core:$hibernateVersion"
