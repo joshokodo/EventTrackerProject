@@ -391,7 +391,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8084/api/games/wishlist/sort/title",
+					"raw": "http://localhost:8084/api/games/wishlist/sort/price",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -402,7 +402,7 @@
 						"games",
 						"wishlist",
 						"sort",
-						"title"
+						"price"
 					]
 				}
 			},
@@ -445,7 +445,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8084/api/games/wishlist/sort/title",
+					"raw": "http://localhost:8084/api/games/wishlist/sort/category",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -456,7 +456,7 @@
 						"games",
 						"wishlist",
 						"sort",
-						"title"
+						"category"
 					]
 				}
 			},
