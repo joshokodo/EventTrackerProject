@@ -1,28 +1,41 @@
 window.addEventListener('load', function(e) {
 	const form = document.mainForm;
 	const gameDiv = document.getElementById('gameData');
+	const titleButtonLabel = 'Sort By Title';
+	const ownedButtonLabel = 'Sort By Owned';
+	const dateButtonLabel = 'Sort By Release Date';
+	
+	var byTitlePath = 'api/games';
+	var byOwnedPath = 'api/games';
+	var byDatePath = 'api/games';
 
 	console.log('document loaded');
 	init();
 
 	function init() {
+		
 		formInit();
-		form.all.addEventListener('click', allGamesCallback);
+		getAllGames();
+		
+		form.byTitle.addEventListener('click', gamesByTitleCallback);
+		form.byOwned.addEventListener('click', gamesByOwnedCallback);
+		form.byDate.addEventListener('click', gamesByDateCallback);
 	}
 
 	function formInit() {
 
-		let allGamesButton = createButton('all', 'All Games');
 
-		let ownedGamesButton = createButton('owned', 'Owned Games');
+		let byTitleButton = createButton('byTitle', titleButtonLabel);
 
-		let wishlistGamesButton = createButton('wishlist', 'Wishlist Games');
+		let byOwnedButton = createButton('byOwned', ownedButtonLabel);
+
+		let byDateButton = createButton('byDate', dateButtonLabel);
 
 		let createGameButton = createButton('create', 'Add Game');
 
-		form.appendChild(allGamesButton);
-		form.appendChild(ownedGamesButton);
-		form.appendChild(wishlistGamesButton);
+		form.appendChild(byTitleButton);
+		form.appendChild(byOwnedButton);
+		form.appendChild(byDateButton);
 		form.appendChild(createGameButton);
 
 	}
@@ -37,15 +50,128 @@ window.addEventListener('load', function(e) {
 	function clearChildren(element) {
 
 		while (element.firstChild) {
-			element.removeChild(form.firstChild);
+			element.removeChild(element.firstChild);
 		}
 	}
 
-	function allGamesCallback(e) {
+	function gamesByTitleCallback(e) {
 		e.preventDefault();
-		getAllGames();
+		
+		form.byOwned.textContent = ownedButtonLabel;
+		byOwnedPath = 'api/games';
+		
+		form.byDate.textContent = dateButtonLabel;
+		byDatePath = 'api/games';
+		
+		if(byTitlePath === 'api/games'){
+			e.target.textContent =  titleButtonLabel + '\u25B2' ;
+			byTitlePath = 'api/games/sort/title/ascend';
+		}
+		else if(byTitlePath === 'api/games/sort/title/ascend'){
+			e.target.textContent = titleButtonLabel + '\u25BC';
+			byTitlePath = 'api/games/sort/title/descend';
+		}
+		else if(byTitlePath === 'api/games/sort/title/descend'){
+			e.target.textContent = titleButtonLabel;
+			byTitlePath = 'api/games';
+		}
+		getAllGamesBySortPath(byTitlePath);
+	}
+	
+	function gamesByOwnedCallback(e) {
+		e.preventDefault();
+		
+		form.byTitle.textContent = titleButtonLabel;
+		byTitlePath = 'api/games';
+		
+		form.byDate.textContent = dateButtonLabel;
+		byDatePath = 'api/games';
+		
+		if(byOwnedPath === 'api/games'){
+			e.target.textContent = ownedButtonLabel + '\u25B2' ;
+			byOwnedPath = 'api/games/sort/own/ascend';
+		}
+		else if(byOwnedPath === 'api/games/sort/own/ascend'){
+			e.target.textContent = ownedButtonLabel + '\u25BC';
+			byOwnedPath = 'api/games/sort/own/descend';
+		}
+		else if(byOwnedPath === 'api/games/sort/own/descend'){
+			e.target.textContent = ownedButtonLabel;
+			byOwnedPath = 'api/games';
+		}
+		getAllGamesBySortPath(byOwnedPath);
+	}
+	
+	function gamesByDateCallback(e) {
+		e.preventDefault();
+		
+		form.byTitle.textContent = titleButtonLabel;
+		byTitlePath = 'api/games';
+		
+		form.byOwned.textContent = ownedButtonLabel;
+		byOwnedPath = 'api/games';
+		
+		if(byDatePath === 'api/games'){
+			e.target.textContent = dateButtonLabel + '\u25B2' ;
+			byDatePath = 'api/games/sort/releaseDate/ascend';
+		}
+		else if(byDatePath === 'api/games/sort/releaseDate/ascend'){
+			e.target.textContent = dateButtonLabel + '\u25BC';
+			byDatePath = 'api/games/sort/releaseDate/descend';
+		}
+		else if(byDatePath === 'api/games/sort/releaseDate/descend'){
+			e.target.textContent = dateButtonLabel;
+			byDatePath = 'api/games';
+		}
+		getAllGamesBySortPath(byDatePath);
 	}
 
+	
+
+	function getAllGames() {
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', 'api/games');
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {
+				if (xhr.status < 400) {
+					let response = xhr.responseText;
+					let games = JSON.parse(response);
+					displayGames(games);
+
+				} else {
+
+					let failHeader = document.createElement('h1');
+					failHeader.textContent = 'No Game Data Found';
+					gameDiv.appendChild(failHeader);
+				}
+			}
+		}
+		xhr.send();
+	}
+	
+	function getAllGamesBySortPath(path) {
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', path);
+		
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {
+				if (xhr.status < 400) {
+					let response = xhr.responseText;
+					let games = JSON.parse(response);
+					displayGames(games);
+					
+				} else {
+					
+					let failHeader = document.createElement('h1');
+					failHeader.textContent = 'No Game Data Found';
+					gameDiv.appendChild(failHeader);
+				}
+			}
+		}
+		xhr.send();
+	}
+	
 	function displayGames(games) {
 		clearChildren(gameDiv);
 
@@ -88,28 +214,6 @@ window.addEventListener('load', function(e) {
 			});
 			gameDiv.appendChild(table);
 		}
-	}
-
-	function getAllGames() {
-		let xhr = new XMLHttpRequest();
-		xhr.open('GET', 'api/games');
-
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState === 4) {
-				if (xhr.status < 400) {
-					let response = xhr.responseText;
-					let games = JSON.parse(response);
-					displayGames(games);
-
-				} else {
-
-					let failHeader = document.createElement('h1');
-					failHeader.textContent = 'No Game Data Found';
-					gameDiv.appendChild(failHeader);
-				}
-			}
-		}
-		xhr.send();
 	}
 
 }); // end of on load

@@ -31,6 +31,42 @@ public class VideoGameController {
 		resp.setHeader("Location", newUrl);
 		return gameSvc.index();
 	}
+	@GetMapping("games/sort/own/ascend")
+	public List<Videogame> allGamesByOwnedAscend(HttpServletResponse resp, HttpServletRequest req) {
+		String newUrl = req.getRequestURL().toString();
+		resp.setHeader("Location", newUrl);
+		return gameSvc.indexByOwnedAscend();
+	}
+	@GetMapping("games/sort/own/descend")
+	public List<Videogame> allGamesByOwnedDescend(HttpServletResponse resp, HttpServletRequest req) {
+		String newUrl = req.getRequestURL().toString();
+		resp.setHeader("Location", newUrl);
+		return gameSvc.indexByOwnedDescend();
+	}
+	@GetMapping("games/sort/releaseDate/ascend")
+	public List<Videogame> allGamesByReleaseDateAscend(HttpServletResponse resp, HttpServletRequest req) {
+		String newUrl = req.getRequestURL().toString();
+		resp.setHeader("Location", newUrl);
+		return gameSvc.indexByReleaseDateAscend();
+	}
+	@GetMapping("games/sort/releaseDate/descend")
+	public List<Videogame> allGamesByReleaseDateDescend(HttpServletResponse resp, HttpServletRequest req) {
+		String newUrl = req.getRequestURL().toString();
+		resp.setHeader("Location", newUrl);
+		return gameSvc.indexByReleaseDateDescend();
+	}
+	@GetMapping("games/sort/title/ascend")
+	public List<Videogame> allGamesByTitleAscend(HttpServletResponse resp, HttpServletRequest req) {
+		String newUrl = req.getRequestURL().toString();
+		resp.setHeader("Location", newUrl);
+		return gameSvc.indexByTitleAscend();
+	}
+	@GetMapping("games/sort/title/descend")
+	public List<Videogame> allGamesByTitleDescend(HttpServletResponse resp, HttpServletRequest req) {
+		String newUrl = req.getRequestURL().toString();
+		resp.setHeader("Location", newUrl);
+		return gameSvc.indexByTitleDescend();
+	}
 
 	@GetMapping("games/{id}")
 	public Videogame gameById(@PathVariable int id, HttpServletResponse resp, HttpServletRequest req) {
@@ -79,82 +115,7 @@ public class VideoGameController {
 		return deleteSuccess;
 	}
 	
-	// owned games
-	@GetMapping("games/own")
-	public List<Videogame> allOwnedGames(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexOwned();
-	}
-	@GetMapping("games/own/sort/date")
-	public List<Videogame> allOwnedGamesByDate(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexOwnedByDate();
-	}
-	@GetMapping("games/own/sort/rating")
-	public List<Videogame> allOwnedGamesByRating(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexOwnedByRating();
-	}
-	@GetMapping("games/own/sort/title")
-	public List<Videogame> allOwnedGamesByTitle(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexOwnedByTitle();
-	}
-	@GetMapping("games/own/sort/price")
-	public List<Videogame> allOwnedGamesByPrice(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexOwnedByPrice();
-	}
-	@GetMapping("games/own/sort/category")
-	public List<Videogame> allOwnedGamesByCategory(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexOwnedByCategory();
-	}
 	
-
-	// not owned games
-	@GetMapping("games/wishlist")
-	public List<Videogame> allWishlistGames(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexWishlist();
-	}
-	@GetMapping("games/wishlist/sort/date")
-	public List<Videogame> allWishlistGamesByDate(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexWishlistByDate();
-	}
-	@GetMapping("games/wishlist/sort/rating")
-	public List<Videogame> allWishlistGamesByRating(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexWishlistByRating();
-	}
-	@GetMapping("games/wishlist/sort/title")
-	public List<Videogame> allWishlistGamesByTitle(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexWishlistByTitle();
-	}
-	@GetMapping("games/wishlist/sort/price")
-	public List<Videogame> allWishlistGamesByPrice(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexWishlistByPrice();
-	}
-	@GetMapping("games/wishlist/sort/category")
-	public List<Videogame> allWishlistGamesByCategory(HttpServletResponse resp, HttpServletRequest req) {
-		String newUrl = req.getRequestURL().toString();
-		resp.setHeader("Location", newUrl);
-		return gameSvc.indexWishlistByCategory();
-	}
 
 	// helper methods
 

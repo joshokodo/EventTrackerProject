@@ -99,66 +99,35 @@ public class VideogameServiceImpl implements VideogameService {
 	}
 
 	@Override
-	public List<Videogame> indexOwned() {
-		return gameRepo.findByOwn(true);
+	public List<Videogame> indexByOwnedAscend() {
+		return gameRepo.sortAllByOwnAsc();
 	}
 
 	@Override
-	public List<Videogame> indexOwnedByDate() {
-
-		return gameRepo.findByOwnOrderByReleaseDate(true);
+	public List<Videogame> indexByOwnedDescend() {
+		return gameRepo.sortAllByOwnDesc();
 	}
 
 	@Override
-	public List<Videogame> indexOwnedByRating() {
-		return gameRepo.findByOwnOrderByRating(true);
+	public List<Videogame> indexByReleaseDateAscend() {
+		return gameRepo.sortAllByReleaseDateAsc();
 	}
 
 	@Override
-	public List<Videogame> indexOwnedByTitle() {
-		return gameRepo.findByOwnOrderByTitle(true);
+	public List<Videogame> indexByReleaseDateDescend() {
+		return gameRepo.sortAllByReleaseDateDesc();
 	}
 
 	@Override
-	public List<Videogame> indexOwnedByPrice() {
-		return gameRepo.findByOwnOrderByPrice(true);
+	public List<Videogame> indexByTitleAscend() {
+		return gameRepo.sortAllByTitleAsc();
 	}
 
 	@Override
-	public List<Videogame> indexOwnedByCategory() {
-		return gameRepo.findByOwnOrderByCategory(true);
+	public List<Videogame> indexByTitleDescend() {
+		return gameRepo.sortAllByTitleDesc();
 	}
-
-	@Override
-	public List<Videogame> indexWishlist() {
-		return gameRepo.findByOwn(false);
-	}
-
-	@Override
-	public List<Videogame> indexWishlistByDate() {
-		return gameRepo.findByOwnOrderByReleaseDate(false);
-	}
-
-	@Override
-	public List<Videogame> indexWishlistByRating() {
-		return gameRepo.findByOwnOrderByRating(false);
-	}
-
-	@Override
-	public List<Videogame> indexWishlistByTitle() {
-		return gameRepo.findByOwnOrderByTitle(false);
-	}
-
-	@Override
-	public List<Videogame> indexWishlistByPrice() {
-		return gameRepo.findByOwnOrderByPrice(false);
-	}
-
-	@Override
-	public List<Videogame> indexWishlistByCategory() {
-		return gameRepo.findByOwnOrderByCategory(false);
-	}
-
+	
 	// helper methods
 	private Rating getDefaultRating() {
 		Optional<Rating> opt = ratingRepo.findById(6);
