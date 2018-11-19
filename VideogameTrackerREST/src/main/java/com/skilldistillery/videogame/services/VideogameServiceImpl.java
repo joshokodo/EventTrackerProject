@@ -54,7 +54,7 @@ public class VideogameServiceImpl implements VideogameService {
 
 		game.setCategory(game.getCategory() == null ? getDefaultCategory() : game.getCategory());
 
-		game.setPlatforms(game.getPlatforms() == null ? getDefaultPlatforms() 
+		game.setPlatforms(game.getPlatforms() == null || game.getPlatforms().isEmpty()? getDefaultPlatforms() 
 													  : game.getPlatforms());
 		return gameRepo.saveAndFlush(game);
 	}
