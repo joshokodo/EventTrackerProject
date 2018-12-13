@@ -1,5 +1,5 @@
 ## Week 14 Homework: Event Tracker Project
-
+![Alt text](Users/joshuaciccone/Desktop/eventtrackerimg.png?raw=true "Front Page")
 ### Overview
  The purpose of this project was to practice using a RESTful api along with spring boot and JPA repositories connecting to a database. All controller methods where verified and tested using "postman" route tester. The project is running off of a Amazon web server at http://18.223.244.221:8080/VideogameTrackerREST.
 
