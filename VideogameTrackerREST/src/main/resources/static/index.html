@@ -1,68 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Video Game Tracker</title>
-<script src="js/eventTracker.js"></script>
-</head>
+  <meta charset="utf-8">
+  <title>NgVidoegameEvents</title>
+  <base href="/VideogameTrackerREST/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.10955855a326ae04f66e.css"></head>
 <body>
-	<h1 id="mainHeader" style="text-align: center">Video Game Tracker</h1>
-	<form name="form" align="center">
-	<input type="hidden" name="id">
-		<input type="text" name="title" placeholder="title">
-		<br>
-		<input type="text" name="description" placeholder="description">
-		<br>
-		<input type="text" name="features" placeholder="features">
-		<br>
-		<input type="number" name="price" placeholder="price">
-		<br>
-		<label>Own Game?</label>
-		Yes<input type="radio" name="own" value=true checked="checked">
-		No <input type="radio" name="own" value=false>
-		<br>
-		
-		Release Date: <input type="date" name="releaseDate" placeholder="date"> 
-		<br>
-		Rating: <select name="rating">
-			<option value="E">Everyone</option>
-			<option value="E10">Everyone 10+</option>
-			<option value="T">Teen</option>
-			<option value="M">Mature</option>
-			<option value="A">Adult</option>
-			<option value="TBD">TBD</option>
-		</select>
-	<!-- 	ACTION, ADVENTURE, PUZZLE, RPG, SHOOTER, SPORTS, FIGHTING; -->
-		<br>
-		Category: <select name="category">
-			<option value="ACTION">Action</option>
-			<option value="ADVENTURE">Adventure</option>
-			<option value="PUZZLE">Puzzle</option>
-			<option value="RPG">Rpg</option>
-			<option value="SHOOTER">Shooting</option>
-			<option value="SPORTS">Sports</option>
-			<option value="FIGHTING">Fighting</option>
-		</select>
-		
-		<br>
-		System(s):		
-		PS4<input type="checkbox" name="platforms[]" value="PS4"> 
-		XBOX ONE<input type="checkbox" name="platforms[]" value="XBOX1"> 
-		PC<input type="checkbox" name="platforms[]" value="PC">
-		SWITCH<input type="checkbox" name="platforms[]" value="SWITCH">
-		3DS<input type="checkbox" name="platforms[]" value="THREE_DS">
-		<br>
-		<button name="button" >Add Game</button>
-		
-	</form>
-
-	<hr>
-	<div id="stats"></div>
-	<hr>
-	<div align="center" id="output">
-		<div id="gameData"></div>
-	</div>
-
-
-</body>
+  <app-root></app-root>
+<script type="text/javascript" src="runtime.ec2944dd8b20ec099bf3.js"></script><script type="text/javascript" src="polyfills.c6871e56cb80756a5498.js"></script><script type="text/javascript" src="main.1874f90120a8a8cc2608.js"></script></body>
 </html>

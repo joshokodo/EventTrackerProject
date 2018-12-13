@@ -1,0 +1,138 @@
+<div class="container main-background">
+  <div *ngIf="selected && !editGame">
+    <div class="row">
+      <div class="col - 4">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button class="btn btn-warning" (click)="goToGamesListPage()">Back</button>
+          <button class="btn btn-success" (click)="setEditGame()">Edit</button>
+          <button class="btn btn-danger" (click)="deleteGame(selected.id)">Delete</button>
+        </div>
+      </div>
+      <div class="col - 4">
+        <h1 align="center">{{ selected.title }}</h1>
+      </div>
+      <div class="col - 4"></div>
+    </div>
+    <div class="row">
+      <div class="col - 4"></div>
+      <div class="col - 4">
+        <table class="table table-nonfluid">
+          <tr>
+            <td>Description:</td>
+            <td>{{ selected.description }}</td>
+          </tr>
+          <tr *ngIf="selected.features">
+            <td>Features:</td>
+            <td>{{ selected.features }}</td>
+          </tr>
+          <tr>
+            <td>Price:</td>
+            <td>{{ selected.price | currency }}</td>
+          </tr>
+          <tr>
+            <td>Owned:</td>
+            <td>{{ selected.own ? "YES" : "NO" }}</td>
+          </tr>
+          <tr>
+            <td>Release Date:</td>
+            <td>{{ selected.releaseDate | date: "fullDate" }}</td>
+          </tr>
+          <tr>
+            <td>Rated:</td>
+            <td>{{ getFullRating(selected.rating.rated) }}</td>
+          </tr>
+          <tr>
+            <td>Category:</td>
+            <td>{{ selected.category.gameType }}</td>
+          </tr>
+          <tr>
+            <td>Game Systems:</td>
+            <td>
+              <ul>
+                <li *ngFor="let platform of selected.platforms">
+                  {{ platform.gameSystem }}
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col - 4"></div>
+    </div>
+  </div>
+
+  <div *ngIf="editGame && !selected">
+    <form>
+      <label for="title">Title: </label>
+      <input
+        placeholder="title"
+        type="text"
+        name="title"
+        [(ngModel)]="editGame.title"
+      />
+      <br />
+      <label for="description">Description: </label>
+      <textarea
+        rows="4"
+        cols="50"
+        placeholder="description"
+        name="description"
+        [(ngModel)]="editGame.description"
+      ></textarea>
+      <br />
+      <label for="features">features: </label>
+      <textarea
+        rows="4"
+        cols="50"
+        placeholder="features"
+        name="featues"
+        [(ngModel)]="editGame.features"
+      ></textarea>
+      <br />
+      <label for="price">Price: </label>
+      <input type="number" placeholder="price" name="price" min="1" [(ngModel)]="editGame.price"/>
+      <br />
+      Own: <input type="checkbox" name="own"  [(ngModel)]="editGame.own"/>
+      <br />
+      <label for="releaseDate">Release Date: </label>
+      <input type="date" name="releaseDate" [(ngModel)]="editGame.releaseDate"/>
+      <br />
+      <label for="rating">Rating: </label>
+      <select name="rating" [(ngModel)]="editGame.rating.rated">
+        <option value="E">Everyone</option>
+        <option value="E10PLUS">Everyone 10+</option>
+        <option value="T">Teen</option>
+        <option value="M">Mature</option>
+        <option value="A">Adult</option>
+        <option value="TBD">TBD</option>
+      </select>
+      <br>
+      <label for="category">Category: </label>
+      <select name="category" [(ngModel)]="editGame.category.gameType">
+        <option>ACTION</option>
+        <option>ADVENTURE</option>
+        <option>PUZZLE</option>
+        <option>RPG</option>
+        <option>SHOOTER</option>
+        <option>SPORTS</option>
+        <option>FIGHTING</option>
+      </select>
+      <br>
+      <Label>Game Systems: </Label>
+      PS4: <input type="checkbox" name="ps4" [(ngModel)]="platformBuilder.platforms[0]" />
+      XBOX ONE: <input type="checkbox" name="xbox1" [(ngModel)]="platformBuilder.platforms[1]" />
+      PC: <input type="checkbox" name="pc" [(ngModel)]="platformBuilder.platforms[2]" />
+      SWITCH: <input type="checkbox" name="switch" [(ngModel)]="platformBuilder.platforms[3]" />
+      3DS: <input type="checkbox" name="threeDS" [(ngModel)]="platformBuilder.platforms[4]" />
+      <br>
+
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button class="btn btn-success" (click)="updateGame(editGame)">
+          Save
+        </button>
+        <button class="btn btn-danger" (click)="resetEditGame()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -98,35 +98,7 @@ public class VideogameServiceImpl implements VideogameService {
 		return deleted;
 	}
 
-	@Override
-	public List<Videogame> indexByOwnedAscend() {
-		return gameRepo.sortAllByOwnAsc();
-	}
 
-	@Override
-	public List<Videogame> indexByOwnedDescend() {
-		return gameRepo.sortAllByOwnDesc();
-	}
-
-	@Override
-	public List<Videogame> indexByReleaseDateAscend() {
-		return gameRepo.sortAllByReleaseDateAsc();
-	}
-
-	@Override
-	public List<Videogame> indexByReleaseDateDescend() {
-		return gameRepo.sortAllByReleaseDateDesc();
-	}
-
-	@Override
-	public List<Videogame> indexByTitleAscend() {
-		return gameRepo.sortAllByTitleAsc();
-	}
-
-	@Override
-	public List<Videogame> indexByTitleDescend() {
-		return gameRepo.sortAllByTitleDesc();
-	}
 	
 	// helper methods
 	private Rating getDefaultRating() {

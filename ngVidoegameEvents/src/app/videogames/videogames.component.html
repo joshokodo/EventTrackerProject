@@ -1,0 +1,127 @@
+<div class="container" [ngClass]="!addingGame ? 'main-background' : 'add-background'">
+  <div *ngIf="!addingGame">
+
+
+  <div class="row">
+    <div class="col-4">
+      <button class="btn btn-success" (click)="readyToAdd()">Add Game</button>
+    </div>
+    <div class="col-4">
+      <h1 *ngIf="!selected" class="main-title">Video Games</h1>
+    </div>
+    <div class="col-4">
+      <table class="table table-nonfluid stats game-row">
+        <tr>
+          <td>Games Owned: </td>
+          <td>{{getGamesOwnedRatio()}}</td>
+        </tr>
+        <tr>
+          <td>Money needed to get wishlist games: </td>
+          <td>{{getTotalCost() | currency}}</td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <table *ngIf="!selected" class="table table-nonfluid">
+        <thead class="thead thead-dark">
+          <tr>
+            <th>Title</th>
+            <th>Owned</th>
+            <th>Release Date</th>
+          </tr>
+        </thead>
+        <tr class="game-row" *ngFor="let game of games">
+          <td (click)="goToDetailPage(game.id)">{{ game.title }}</td>
+          <td [ngClass]="game.own ? 'greenAlert' : 'redAlert'" (click)="toggleOwned(game)">
+            {{ game.own ? "YES" : "NO" }}
+          </td>
+          <td [ngClass]="gameAvailableNow(game) ? 'greenAlert' : 'redAlert'">
+            {{ game.releaseDate | date: "shortDate" }}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+
+<div *ngIf="addingGame">
+    <form class="add-form">
+      <label for="title">Title: </label>
+      <input
+        placeholder="title"
+        type="text"
+        name="title"
+        [(ngModel)]="newGame.title"
+      />
+      <br />
+      <label for="description">Description: </label>
+      <textarea
+        rows="4"
+        cols="50"
+        placeholder="description"
+        name="description"
+        [(ngModel)]="newGame.description"
+      ></textarea>
+      <br />
+      <label for="features">features: </label>
+      <textarea
+        rows="4"
+        cols="50"
+        placeholder="features"
+        name="featues"
+        [(ngModel)]="newGame.features"
+      ></textarea>
+      <br />
+      <label for="price">Price: </label>
+      <input type="number" placeholder="price" name="price" min="1" [(ngModel)]="newGame.price"/>
+      <br />
+      Own: <input type="checkbox" name="own"  [(ngModel)]="newGame.own"/>
+      <br />
+      <label for="releaseDate">Release Date: </label>
+      <input type="date" name="releaseDate" [(ngModel)]="newGame.releaseDate"/>
+      <br />
+      <label for="rating">Rating: </label>
+      <select name="rating" [(ngModel)]="newGame.rating.rated">
+        <option value="E">Everyone</option>
+        <option value="E10PLUS">Everyone 10+</option>
+        <option value="T">Teen</option>
+        <option value="M">Mature</option>
+        <option value="A">Adult</option>
+        <option value="TBD">TBD</option>
+      </select>
+      <br>
+      <label for="category">Category: </label>
+      <select name="category" [(ngModel)]="newGame.category.gameType">
+        <option>ACTION</option>
+        <option>ADVENTURE</option>
+        <option>PUZZLE</option>
+        <option>RPG</option>
+        <option>SHOOTER</option>
+        <option>SPORTS</option>
+        <option>FIGHTING</option>
+      </select>
+      <br>
+      <Label>Game Systems: </Label>
+      PS4: <input type="checkbox" name="ps4" [(ngModel)]="platformBuilder.platforms[0]" />
+      XBOX ONE: <input type="checkbox" name="xbox1" [(ngModel)]="platformBuilder.platforms[1]" />
+      PC: <input type="checkbox" name="pc" [(ngModel)]="platformBuilder.platforms[2]" />
+      SWITCH: <input type="checkbox" name="switch" [(ngModel)]="platformBuilder.platforms[3]" />
+      3DS: <input type="checkbox" name="threeDS" [(ngModel)]="platformBuilder.platforms[4]" />
+      <br>
+
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button class="btn btn-success" (click)="addGame(newGame)">
+          Add
+        </button>
+        <button class="btn btn-danger" (click)="resetNewGame()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

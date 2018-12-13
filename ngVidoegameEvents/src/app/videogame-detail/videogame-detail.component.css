@@ -1,0 +1,22 @@
+.main-background {
+  background-image: url(https://us.123rf.com/450wm/chuckchee/chuckchee1706/chuckchee170600028/80115704-pixel-art-game-background-with-trees-ground-grass-sky-and-clouds-.jpg?ver=6);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  width: 100%;
+}
+td { width:50%; }
+
+label { display:block; }
+textarea { display:block; }
+
+.table-nonfluid {
+  width: 100%;
+
+  border-right: solid;
+  border-left: solid;
+  border-bottom: solid;
+  border-top: solid;
+  border-spacing: solid;
+
+}

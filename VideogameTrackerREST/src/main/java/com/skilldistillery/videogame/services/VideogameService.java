@@ -5,12 +5,6 @@ import java.util.List;
 import com.skilldistillery.videogame.entities.Videogame;
 
 public interface VideogameService {
-	List<Videogame> indexByOwnedAscend();
-	List<Videogame> indexByOwnedDescend();
-	List<Videogame> indexByReleaseDateAscend();
-	List<Videogame> indexByReleaseDateDescend();
-	List<Videogame> indexByTitleAscend();
-	List<Videogame> indexByTitleDescend();
 	
 	List<Videogame> index();
 	Videogame show(int id);
